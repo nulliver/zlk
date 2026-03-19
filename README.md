@@ -79,20 +79,20 @@ Restart Zed.
 
 No prefix.
 
-| Key    | Action                            | Notes                                                                           |
-| ------ | --------------------------------- | ------------------------------------------------------------------------------- |
-| `F4`   | Spawn Task                        | Choose from a list                                                              |
-| `⇧ F4` | Rerun last task                   |                                                                                 |
-| `F5`   | Start / Rerun / Continue          | Context-sensitive: starts when idle, reruns when running, continues when paused |
-| `⇧ F5` | Stop                              |                                                                                 |
-| `F6`   | Step Over                         |                                                                                 |
-| `F7`   | Step Into                         |                                                                                 |
-| `⇧ F7` | Step Out                          |                                                                                 |
-| `F8`   | Toggle Breakpoint                 |                                                                                 |
-| `⇧ F8` | Edit Log / Conditional Breakpoint |                                                                                 |
-| `⌘ F8` | Clear All Breakpoints             |                                                                                 |
-| `F9`   | Next Diagnostic                   |                                                                                 |
-| `⇧ F9` | Previous Diagnostic               |                                                                                 |
+| Key    | Action                            | Notes                                                        |
+| ------ | --------------------------------- | ------------------------------------------------------------ |
+| `F4`   | Spawn Task                        | Choose from a list                                           |
+| `⇧F4`  | Rerun last task                   |                                                              |
+| `F5`   | Start / Rerun / Continue          | Starts when idle, reruns when running, continues when paused |
+| `⇧F5`  | Stop                              |                                                              |
+| `F6`   | Step Over                         |                                                              |
+| `F7`   | Step Into                         |                                                              |
+| `⇧F7`  | Step Out                          |                                                              |
+| `F8`   | Toggle Breakpoint                 |                                                              |
+| `⇧F8`  | Edit Log / Conditional Breakpoint |                                                              |
+| `⌘ F8` | Clear All Breakpoints             |                                                              |
+| `F9`   | Next Diagnostic                   |                                                              |
+| `⇧F9`  | Previous Diagnostic               |                                                              |
 
 ---
 
