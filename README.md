@@ -20,10 +20,10 @@ Each group is activated with **⌘ + a prefix letter** (group), followed by a **
 
 Every binding has **two forms** so you can type at your own pace:
 
-| Form          | How to type             | When to use            |
-| ------------- | ----------------------- | ---------------------- |
-| `⌘ X` · `Y`   | Release ⌘, then press Y | Normal speed           |
-| `⌘ X` · `⌘ Y` | Keep ⌘ held throughout  | Fast / held-key typing |
+| Form          | How to type             |
+| ------------- | ----------------------- |
+| `⌘ X` · `Y`   | Release ⌘, then press Y |
+| `⌘ X` · `⌘ Y` | Keep ⌘ held throughout  |
 
 **Platform note:**
 
