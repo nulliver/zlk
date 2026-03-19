@@ -1,0 +1,384 @@
+[
+  // ───────────────────────────────────────────────
+  // DEBUGGING  (no prefix – F-key layout)
+  // ───────────────────────────────────────────────
+  {
+    "bindings": {
+      // Spawn task (pick from list)
+      "f4": "task::Spawn",
+      // Rerun last task
+      "shift-f4": ["task::Rerun", { "reevaluate_context": false }],
+      "f5": "debugger::Start", // Start (when not running)
+      "shift-f5": "debugger::Stop", // Stop
+      "f6": "debugger::StepOver", // Step Over
+      "f7": "debugger::StepInto", // Step Into
+      "shift-f7": "debugger::StepOut", // Step Out
+      "f8": "editor::ToggleBreakpoint", // Toggle breakpoint
+      "shift-f8": "editor::EditLogBreakpoint", // Set log / conditional breakpoint
+      "super-f8": "debugger::ClearAllBreakpoints", // Delete all breakpoints
+      "f9": "editor::GoToDiagnostic", // Next diagnostic
+      "shift-f9": "editor::GoToPreviousDiagnostic", // Previous diagnostic
+    },
+  },
+  {
+    // When the debugger is actively running, f5 should restart (rerun)
+    "context": "Workspace && debugger_running",
+    "bindings": {
+      "f5": "debugger::Rerun",
+      "f6": "debugger::StepOver",
+    },
+  },
+  {
+    // When the debugger is paused/stopped at a breakpoint, f5 resumes
+    "context": "Workspace && debugger_stopped",
+    "bindings": {
+      "f5": "debugger::Continue",
+      "f6": "debugger::StepOver",
+      "f7": "debugger::StepInto",
+      "shift-f7": "debugger::StepOut",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // DISABLED DEFAULTS
+  // ───────────────────────────────────────────────
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-w": null,
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-w": null,
+      "cmd-f": null,
+      "cmd-r": null,
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-f": null,
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-j  →  JUMP
+  // ───────────────────────────────────────────────
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-j": null, // was "workspace::ToggleBottomDock"
+      // Go to Definition
+      "super-j d": "editor::GoToDefinition",
+      "super-j super-d": "editor::GoToDefinition",
+      // Go to Type Definition
+      "super-j t": "editor::GoToTypeDefinition",
+      "super-j super-t": "editor::GoToTypeDefinition",
+      // Go to Implementation
+      "super-j i": "editor::GoToImplementation",
+      "super-j super-i": "editor::GoToImplementation",
+      // Find All References / usages
+      "super-j r": "editor::FindAllReferences",
+      "super-j super-r": "editor::FindAllReferences",
+      // Move to matching / enclosing bracket
+      "super-j j": "editor::MoveToEnclosingBracket",
+      "super-j super-j": "editor::MoveToEnclosingBracket",
+      // Move to start of paragraph / code block
+      "super-j s": "editor::MoveToStartOfParagraph",
+      "super-j super-s": "editor::MoveToStartOfParagraph",
+      // Move to end of paragraph / code block
+      "super-j e": "editor::MoveToEndOfParagraph",
+      "super-j super-e": "editor::MoveToEndOfParagraph",
+      // Hover / show documentation inline
+      "super-j h": "editor::Hover",
+      "super-j super-h": "editor::Hover",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Go Back (navigate history)
+      "super-j b": "pane::GoBack",
+      "super-j super-b": "pane::GoBack",
+      // Go Forward (navigate history)
+      "super-j f": "pane::GoForward",
+      "super-j super-f": "pane::GoForward",
+      // Go to Line
+      "super-j l": "go_to_line::Toggle",
+      "super-j super-l": "go_to_line::Toggle",
+      // Reveal current file in Project Panel
+      "super-j p": "pane::RevealInProjectPanel",
+      "super-j super-p": "pane::RevealInProjectPanel",
+      // Outline floating picker — jump to symbol in current file
+      "super-j o": "outline::Toggle",
+      "super-j super-o": "outline::Toggle",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-n  →  NAVIGATE
+  // ───────────────────────────────────────────────
+  {
+    "context": "Workspace",
+    "bindings": {
+      // File Finder (open file by name)
+      "super-n f": "file_finder::Toggle",
+      "super-n super-f": "file_finder::Toggle",
+      // Project Symbols (go to symbol across project)
+      "super-n s": "project_symbols::Toggle",
+      "super-n super-s": "project_symbols::Toggle",
+      // Project Search (find in files)
+      "super-n p": "pane::DeploySearch",
+      "super-n super-p": "pane::DeploySearch",
+      // Recent Projects
+      "super-n r": ["projects::OpenRecent", { "create_new_window": false }],
+      "super-n super-r": [
+        "projects::OpenRecent",
+        { "create_new_window": false },
+      ],
+      // Command Palette
+      "super-n c": "command_palette::Toggle",
+      "super-n super-c": "command_palette::Toggle",
+      // Diagnostics (problems panel)
+      "super-n d": "diagnostics::Deploy",
+      "super-n super-d": "diagnostics::Deploy",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-r  →  REFACTOR
+  // ───────────────────────────────────────────────
+  {
+    "context": "Editor",
+    "bindings": {
+      // Rename symbol
+      "super-r r": "editor::Rename",
+      "super-r super-r": "editor::Rename",
+      // Format document
+      "super-r f": "editor::Format",
+      "super-r super-f": "editor::Format",
+      // Organize Imports
+      "super-r i": "editor::OrganizeImports",
+      "super-r super-i": "editor::OrganizeImports",
+      // Code Actions (quick fix / refactor menu)
+      "super-r a": "editor::ToggleCodeActions",
+      "super-r super-a": "editor::ToggleCodeActions",
+      // Show completions (offer)
+      "super-r c": "editor::ShowCompletions",
+      "super-r super-c": "editor::ShowWordCompletions",
+      // Show signature help
+      "super-r h": "editor::ShowSignatureHelp",
+      "super-r super-h": "editor::ShowSignatureHelp",
+    },
+  },
+  // ───────────────────────────────────────────────
+  // super-l  →  LINE
+  // ───────────────────────────────────────────────
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      // Same as default
+      "alt-up": "editor::MoveLineUp",
+      "alt-down": "editor::MoveLineDown",
+      // Duplicate line Down
+      "super-l d": "editor::DuplicateLineDown",
+      "super-l super-d": "editor::DuplicateLineDown",
+      // Delete line
+      "super-l x": "editor::DeleteLine",
+      "super-l super-x": "editor::DeleteLine",
+      // Join lines
+      "super-l j": "editor::JoinLines",
+      "super-l super-j": "editor::JoinLines",
+      // Toggle line comment
+      "super-l c": ["editor::ToggleComments", { "advance_downwards": false }],
+      "super-l super-c": [
+        "editor::ToggleComments",
+        { "advance_downwards": false },
+      ],
+      // Enter empty line Above current line
+      "super-l a": "editor::NewlineAbove",
+      "super-l super-a": "editor::NewlineAbove",
+      // Enter empty line Below current line
+      "super-l b": "editor::NewlineBelow",
+      "super-l super-b": "editor::NewlineBelow",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-b  →  BLOCK / SELECTION
+  // ───────────────────────────────────────────────
+  {
+    "context": "Editor",
+    "bindings": {
+      "super-b": null,
+      // Expand selection (larger syntax node)
+      "super-b e": "editor::SelectLargerSyntaxNode",
+      "super-b super-e": "editor::SelectLargerSyntaxNode",
+      // Shrink selection (smaller syntax node)
+      "super-b s": "editor::SelectSmallerSyntaxNode",
+      "super-b super-s": "editor::SelectSmallerSyntaxNode",
+      // Move to matching bracket
+      "super-b j": "editor::MoveToEnclosingBracket",
+      "super-b super-j": "editor::MoveToEnclosingBracket",
+      // Select Next occurrence of word/selection
+      "super-b n": ["editor::SelectNext", { "replace_newest": false }],
+      "super-b super-n": ["editor::SelectNext", { "replace_newest": false }],
+      // Skip current occurrence, move selection to next
+      "super-b p": ["editor::SelectNext", { "replace_newest": true }],
+      "super-b super-p": ["editor::SelectNext", { "replace_newest": true }],
+      // Select All occurrences / matches
+      "super-b a": "editor::SelectAllMatches",
+      "super-b super-a": "editor::SelectAllMatches",
+      // Add cursor above
+      "super-b c": ["editor::AddSelectionAbove", { "skip_soft_wrap": true }],
+      "super-b super-c": [
+        "editor::AddSelectionAbove",
+        { "skip_soft_wrap": true },
+      ],
+      // Add cursor below
+      "super-b v": ["editor::AddSelectionBelow", { "skip_soft_wrap": true }],
+      "super-b super-v": [
+        "editor::AddSelectionBelow",
+        { "skip_soft_wrap": true },
+      ],
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-f  →  FOLD
+  // ───────────────────────────────────────────────
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      // Toggle fold at cursor
+      "super-f f": "editor::ToggleFold",
+      "super-f super-f": "editor::ToggleFold",
+      // Fold All
+      "super-f a": "editor::FoldAll",
+      "super-f super-a": "editor::FoldAll",
+      // Unfold All
+      "super-f u": "editor::UnfoldAll",
+      "super-f super-u": "editor::UnfoldAll",
+      // Fold Recursive
+      "super-f r": "editor::FoldRecursive",
+      "super-f super-r": "editor::FoldRecursive",
+      // Unfold / Expand lines at cursor
+      "super-f e": "editor::UnfoldLines",
+      "super-f super-e": "editor::UnfoldLines",
+      // Fold to level 1–5 (numbers, no super-held variant needed)
+      "super-f 1": "editor::FoldAtLevel_1",
+      "super-f 2": "editor::FoldAtLevel_2",
+      "super-f 3": "editor::FoldAtLevel_3",
+      "super-f 4": "editor::FoldAtLevel_4",
+      "super-f 5": "editor::FoldAtLevel_5",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-e  →  EDITOR
+  // ───────────────────────────────────────────────
+  {
+    "context": "Pane",
+    "bindings": {
+      "super-e": null,
+      // Show search bar and focus on it
+      "super-e s": ["buffer_search::Deploy", { "focus": true }],
+      "super-e super-s": ["buffer_search::Deploy", { "focus": true }],
+      // Show replace text box
+      "super-e r": "buffer_search::DeployReplace",
+      "super-e super-r": "buffer_search::DeployReplace",
+      // Split Right
+      "super-e right": "pane::SplitRight",
+      "super-e super-right": "pane::SplitRight",
+      // Split Down
+      "super-e down": "pane::SplitDown",
+      "super-e super-down": "pane::SplitDown",
+      // Split Left
+      "super-e left": "pane::SplitLeft",
+      "super-e super-left": "pane::SplitLeft",
+      // Split Up
+      "super-e up": "pane::SplitUp",
+      "super-e super-up": "pane::SplitUp",
+      // Pin / unpin tab
+      "super-e p": "pane::TogglePinTab",
+      "super-e super-p": "pane::TogglePinTab",
+      // Next tab
+      "super-e n": "pane::ActivateNextItem",
+      "super-e super-n": "pane::ActivateNextItem",
+      // Previous tab
+      "super-e b": "pane::ActivatePreviousItem",
+      "super-e super-b": "pane::ActivatePreviousItem",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Move focus to pane above
+      "super-e k": "workspace::ActivatePaneUp",
+      "super-e super-k": "workspace::ActivatePaneUp",
+      // Move focus to pane below
+      "super-e j": "workspace::ActivatePaneDown",
+      "super-e super-j": "workspace::ActivatePaneDown",
+      // Move focus to pane left
+      "super-e h": "workspace::ActivatePaneLeft",
+      "super-e super-h": "workspace::ActivatePaneLeft",
+      // Move focus to pane right
+      "super-e l": "workspace::ActivatePaneRight",
+      "super-e super-l": "workspace::ActivatePaneRight",
+    },
+  },
+
+  // ───────────────────────────────────────────────
+  // super-w  →  WINDOW
+  // ───────────────────────────────────────────────
+  {
+    "context": "Workspace",
+    "bindings": {
+      "super-w": null,
+      // Project Panel (Explorer)
+      "super-w e": "project_panel::ToggleFocus",
+      "super-w super-e": "project_panel::ToggleFocus",
+      // Terminal
+      "super-w t": "terminal_panel::Toggle",
+      "super-w super-t": "terminal_panel::Toggle",
+      // Outline Panel (persistent sidebar)
+      "super-w o": "outline_panel::ToggleFocus",
+      "super-w super-o": "outline_panel::ToggleFocus",
+      // Git Panel
+      "super-w g": "git_panel::ToggleFocus",
+      "super-w super-g": "git_panel::ToggleFocus",
+      // Debug Panel
+      "super-w d": "debug_panel::ToggleFocus",
+      "super-w super-d": "debug_panel::ToggleFocus",
+      // AI Agent Panel
+      "super-w a": "agent::ToggleFocus",
+      "super-w super-a": "agent::ToggleFocus",
+      // Diagnostics / problems
+      "super-w m": "diagnostics::Deploy",
+      "super-w super-m": "diagnostics::Deploy",
+      // Toggle Left Dock
+      "super-w left": "workspace::ToggleLeftDock",
+      "super-w super-left": "workspace::ToggleLeftDock",
+      // Toggle Right Dock
+      "super-w right": "workspace::ToggleRightDock",
+      "super-w super-right": "workspace::ToggleRightDock",
+      // Toggle Bottom Dock
+      "super-w down": "workspace::ToggleBottomDock",
+      "super-w super-down": "workspace::ToggleBottomDock",
+      // Toggle all docks (number key — no super-held variant needed)
+      "super-w 0": "workspace::ToggleAllDocks",
+      // Close the active dock
+      "super-w x": "workspace::CloseActiveDock",
+      "super-w super-x": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "super-w x": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "super-w super-x": ["pane::CloseActiveItem", { "close_pinned": false }],
+    },
+  },
+]
