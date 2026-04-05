@@ -92,6 +92,7 @@
     "context": "Editor && mode == full",
     "bindings": {
       "cmd-f": null,
+      "cmd-e": null,
       "cmd-shift-o": null,
       // Format and organize imports now under super-r
       "cmd-shift-i": null, // editor::Format
@@ -419,12 +420,6 @@
   // super-e  →  EDITOR
   // ───────────────────────────────────────────────
   {
-    "context": "Pane",
-    "bindings": {
-      "super-e": null,
-    },
-  },
-  {
     "context": "Workspace",
     "bindings": {
       // Split Right
@@ -463,7 +458,7 @@
     },
   },
   {
-    "context": "Editor && language == markdown",
+    "context": "Editor && extension == md",
     "bindings": {
       // Markdown Preview (inline)
       "super-e m": "markdown::OpenPreview",
