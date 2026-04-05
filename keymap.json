@@ -46,6 +46,19 @@
     "context": "Pane",
     "bindings": {
       "cmd-w": null,
+      "cmd-f": null,
+      "cmd-r": null,
+      "cmd-shift-f": null,
+      // Search actions now under super-f
+      "cmd-g": null, // search::SelectNextMatch
+      "cmd-shift-g": null, // search::SelectPreviousMatch
+      "cmd-shift-h": null, // search::ToggleReplace
+      "cmd-alt-l": null, // search::ToggleSelection
+      "alt-enter": null, // search::SelectAllMatches
+      "alt-cmd-c": null, // search::ToggleCaseSensitive
+      "alt-cmd-w": null, // search::ToggleWholeWord
+      "alt-cmd-x": null, // search::ToggleRegex
+      "alt-cmd-f": null, // project_search::ToggleFilters
     },
   },
   {
@@ -54,12 +67,106 @@
       "cmd-w": null,
       "cmd-f": null,
       "cmd-r": null,
+      // Window/panel toggles now under super-w
+      "cmd-b": null, // workspace::ToggleLeftDock
+      "cmd-alt-b": null, // workspace::ToggleRightDock
+      "cmd-j": null, // workspace::ToggleBottomDock
+      // Panels now under super-w
+      "cmd-shift-e": null, // project_panel::ToggleFocus
+      "cmd-shift-b": null, // outline_panel::ToggleFocus
+      "ctrl-shift-g": null, // git_panel::ToggleFocus
+      "cmd-shift-d": null, // debug_panel::ToggleFocus
+      "cmd-shift-m": null, // diagnostics::Deploy
+      // Navigate now under super-n
+      "cmd-t": null, // project_symbols::Toggle
+      "cmd-p": null, // file_finder::Toggle
+      "cmd-shift-p": null, // command_palette::Toggle
+      // Project search now under super-f /
+      "cmd-shift-f": null, // pane::DeploySearch
+      // Recent/remote projects now under super-w
+      "alt-cmd-o": null, // projects::OpenRecent
+      "ctrl-cmd-o": null, // projects::OpenRemote
     },
   },
   {
     "context": "Editor && mode == full",
     "bindings": {
       "cmd-f": null,
+      "cmd-shift-o": null,
+      // Format and organize imports now under super-r
+      "cmd-shift-i": null, // editor::Format
+      "alt-shift-o": null, // editor::OrganizeImports
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // Hover now under super-j h
+      "cmd-k cmd-i": null, // editor::Hover
+      // Fold actions now under super-b
+      "alt-cmd-[": null, // editor::Fold
+      "alt-cmd-]": null, // editor::UnfoldLines
+      "cmd-k cmd-l": null, // editor::ToggleFold
+      "cmd-k cmd-[": null, // editor::FoldRecursive
+      "cmd-k cmd-]": null, // editor::UnfoldRecursive
+      "cmd-k cmd-0": null, // editor::FoldAll
+      "cmd-k cmd-j": null, // editor::UnfoldAll
+      "cmd-k cmd-1": null, // editor::FoldAtLevel_1
+      "cmd-k cmd-2": null, // editor::FoldAtLevel_2
+      "cmd-k cmd-3": null, // editor::FoldAtLevel_3
+      "cmd-k cmd-4": null, // editor::FoldAtLevel_4
+      "cmd-k cmd-5": null, // editor::FoldAtLevel_5
+      "cmd-k cmd-6": null, // editor::FoldAtLevel_6
+      "cmd-k cmd-7": null, // editor::FoldAtLevel_7
+      "cmd-k cmd-8": null, // editor::FoldAtLevel_8
+      "cmd-k cmd-9": null, // editor::FoldAtLevel_9
+      // Code actions now under super-r a
+      "cmd-.": null, // editor::ToggleCodeActions
+      // Completions now under super-r c
+      "ctrl-space": null, // editor::ShowCompletions
+      "ctrl-shift-space": null, // editor::ShowWordCompletions
+      // Signature help now under super-r h
+      "cmd-i": null, // editor::ShowSignatureHelp
+    },
+  },
+  {
+    "context": "Editor && extension == md",
+    "bindings": {
+      // Markdown preview now under super-e m / super-e super-m
+      "cmd-k v": null, // markdown::OpenPreviewToTheSide
+      "cmd-shift-v": null, // markdown::OpenPreview
+    },
+  },
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "cmd-alt-f": null, // search::ToggleReplace
+      "cmd-alt-l": null, // search::ToggleSelection
+    },
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "cmd-shift-h": null, // search::ToggleReplace
+      "alt-cmd-g": null, // search::ToggleRegex
+      "alt-cmd-x": null, // search::ToggleRegex
+      "cmd-shift-j": null, // project_search::ToggleFilters
+    },
+  },
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "cmd-shift-h": null, // search::ToggleReplace
+      "alt-cmd-g": null, // search::ToggleRegex
+      "alt-cmd-x": null, // search::ToggleRegex
+      "cmd-shift-j": null, // project_search::ToggleFilters
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Already listed above — add this one:
+      "ctrl-cmd-o": null, // projects::OpenRemote (from_existing_connection: true variant)
     },
   },
 
@@ -132,12 +239,6 @@
       // Project Search (find in files)
       "super-n p": "pane::DeploySearch",
       "super-n super-p": "pane::DeploySearch",
-      // Recent Projects
-      "super-n r": ["projects::OpenRecent", { "create_new_window": false }],
-      "super-n super-r": [
-        "projects::OpenRecent",
-        { "create_new_window": false },
-      ],
       // Command Palette
       "super-n c": "command_palette::Toggle",
       "super-n super-c": "command_palette::Toggle",
@@ -243,36 +344,74 @@
         "editor::AddSelectionBelow",
         { "skip_soft_wrap": true },
       ],
+
+      "super-b f": "editor::ToggleFold",
+      "super-b super-f": "editor::ToggleFold",
+      "super-b [": "editor::FoldRecursive",
+      "super-b super-[": "editor::FoldRecursive",
+      "super-b ]": "editor::UnfoldRecursive",
+      "super-b super-]": "editor::UnfoldRecursive",
+      "super-b super-f super-1": "editor::FoldAtLevel_1",
+      "super-b super-f super-2": "editor::FoldAtLevel_2",
+      "super-b super-f super-3": "editor::FoldAtLevel_3",
+      "super-b super-f super-4": "editor::FoldAtLevel_4",
+      "super-b super-f super-5": "editor::FoldAtLevel_5",
+      "super-b super-f super-6": "editor::FoldAtLevel_6",
+      "super-b super-f super-7": "editor::FoldAtLevel_7",
+      "super-b super-f super-8": "editor::FoldAtLevel_8",
+      "super-b super-f super-9": "editor::FoldAtLevel_9",
+      "super-b super-f super-a": "editor::FoldAll",
+      "super-b super-f super-u": "editor::UnfoldAll",
     },
   },
 
   // ───────────────────────────────────────────────
-  // super-f  →  FOLD
+  // super-f  →  FIND
   // ───────────────────────────────────────────────
   {
-    "context": "Editor && mode == full",
+    "context": "Pane",
     "bindings": {
-      // Toggle fold at cursor
-      "super-f f": "editor::ToggleFold",
-      "super-f super-f": "editor::ToggleFold",
-      // Fold All
-      "super-f a": "editor::FoldAll",
-      "super-f super-a": "editor::FoldAll",
-      // Unfold All
-      "super-f u": "editor::UnfoldAll",
-      "super-f super-u": "editor::UnfoldAll",
-      // Fold Recursive
-      "super-f r": "editor::FoldRecursive",
-      "super-f super-r": "editor::FoldRecursive",
-      // Unfold / Expand lines at cursor
-      "super-f e": "editor::UnfoldLines",
-      "super-f super-e": "editor::UnfoldLines",
-      // Fold to level 1–5 (numbers, no super-held variant needed)
-      "super-f 1": "editor::FoldAtLevel_1",
-      "super-f 2": "editor::FoldAtLevel_2",
-      "super-f 3": "editor::FoldAtLevel_3",
-      "super-f 4": "editor::FoldAtLevel_4",
-      "super-f 5": "editor::FoldAtLevel_5",
+      // Show search bar and focus on it
+      "super-f f": ["buffer_search::Deploy", { "focus": true }],
+      "super-f super-f": ["buffer_search::Deploy", { "focus": true }],
+      // Show replace text box
+      "super-f r": "buffer_search::DeployReplace",
+      "super-f super-r": "buffer_search::DeployReplace",
+      // Next / previous match  (n/p — consistent with super-b n/p for selections)
+      "super-f n": "search::SelectNextMatch",
+      "super-f super-n": "search::SelectNextMatch",
+      "super-f p": "search::SelectPreviousMatch", // ← moves DeploySearch elsewhere
+      "super-f super-p": "search::SelectPreviousMatch",
+      // Select all matches
+      "super-f a": "search::SelectAllMatches",
+      "super-f super-a": "search::SelectAllMatches",
+      // Toggle replace
+      "super-f t": "search::ToggleReplace",
+      "super-f super-t": "search::ToggleReplace",
+      // Toggle search within selection only
+      "super-f s": "search::ToggleSelection",
+      "super-f super-s": "search::ToggleSelection",
+      // Toggles — modifiers for the search itself
+      "super-f c": "search::ToggleCaseSensitive",
+      "super-f super-c": "search::ToggleCaseSensitive",
+      "super-f w": "search::ToggleWholeWord",
+      "super-f super-w": "search::ToggleWholeWord",
+      "super-f x": "search::ToggleRegex",
+      "super-f super-x": "search::ToggleRegex",
+      // Toggle symbol outline
+      "super-f o": "outline::Toggle",
+      "super-f super-o": "outline::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Project Search (find in files) — moved from p to slash
+      "super-f /": "pane::DeploySearch",
+      "super-f super-/": "pane::DeploySearch",
+      // Project search filters
+      "super-f super-i": "project_search::ToggleFilters",
+      "super-f i": "project_search::ToggleFilters",
     },
   },
 
@@ -283,24 +422,35 @@
     "context": "Pane",
     "bindings": {
       "super-e": null,
-      // Show search bar and focus on it
-      "super-e s": ["buffer_search::Deploy", { "focus": true }],
-      "super-e super-s": ["buffer_search::Deploy", { "focus": true }],
-      // Show replace text box
-      "super-e r": "buffer_search::DeployReplace",
-      "super-e super-r": "buffer_search::DeployReplace",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
       // Split Right
       "super-e right": "pane::SplitRight",
-      "super-e super-right": "pane::SplitRight",
-      // Split Down
+      // Move focus to pane right
+      "super-e super-right": "workspace::ActivatePaneRight",
+      // Move pane to the right
+      "super-e l": "workspace::SwapPaneRight",
+      // Split pane down
       "super-e down": "pane::SplitDown",
-      "super-e super-down": "pane::SplitDown",
-      // Split Left
+      // Move focus to pane below
+      "super-e super-down": "workspace::ActivatePaneDown",
+      // Move pane down
+      "super-e j": "workspace::SwapPaneDown",
+      // Split pane left
       "super-e left": "pane::SplitLeft",
-      "super-e super-left": "pane::SplitLeft",
-      // Split Up
+      // Move focus to pane left
+      "super-e super-left": "workspace::ActivatePaneLeft",
+      // Move pane to the left
+      "super-e h": "workspace::SwapPaneLeft",
+      // Split pane up
       "super-e up": "pane::SplitUp",
-      "super-e super-up": "pane::SplitUp",
+      // Move focus to pane above
+      "super-e super-up": "workspace::ActivatePaneUp",
+      // Move pane up
+      "super-e k": "workspace::SwapPaneUp",
       // Pin / unpin tab
       "super-e p": "pane::TogglePinTab",
       "super-e super-p": "pane::TogglePinTab",
@@ -313,23 +463,20 @@
     },
   },
   {
-    "context": "Workspace",
+    "context": "Editor && language == markdown",
     "bindings": {
-      // Move focus to pane above
-      "super-e k": "workspace::ActivatePaneUp",
-      "super-e super-k": "workspace::ActivatePaneUp",
-      // Move focus to pane below
-      "super-e j": "workspace::ActivatePaneDown",
-      "super-e super-j": "workspace::ActivatePaneDown",
-      // Move focus to pane left
-      "super-e h": "workspace::ActivatePaneLeft",
-      "super-e super-h": "workspace::ActivatePaneLeft",
-      // Move focus to pane right
-      "super-e l": "workspace::ActivatePaneRight",
-      "super-e super-l": "workspace::ActivatePaneRight",
+      // Markdown Preview (inline)
+      "super-e m": "markdown::OpenPreview",
+      // Markdown Preview (to the side)
+      "super-e super-m": "markdown::OpenPreviewToTheSide",
     },
   },
-
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-shift-o": null,
+    },
+  },
   // ───────────────────────────────────────────────
   // super-w  →  WINDOW
   // ───────────────────────────────────────────────
@@ -359,19 +506,34 @@
       "super-w m": "diagnostics::Deploy",
       "super-w super-m": "diagnostics::Deploy",
       // Toggle Left Dock
-      "super-w left": "workspace::ToggleLeftDock",
-      "super-w super-left": "workspace::ToggleLeftDock",
+      "super-w h": "workspace::ToggleLeftDock",
+      "super-w super-h": "workspace::ToggleLeftDock",
       // Toggle Right Dock
-      "super-w right": "workspace::ToggleRightDock",
-      "super-w super-right": "workspace::ToggleRightDock",
+      "super-w l": "workspace::ToggleRightDock",
+      "super-w super-l": "workspace::ToggleRightDock",
       // Toggle Bottom Dock
-      "super-w down": "workspace::ToggleBottomDock",
-      "super-w super-down": "workspace::ToggleBottomDock",
+      "super-w j": "workspace::ToggleBottomDock",
+      "super-w super-j": "workspace::ToggleBottomDock",
       // Toggle all docks (number key — no super-held variant needed)
       "super-w 0": "workspace::ToggleAllDocks",
       // Close the active dock
       "super-w x": "workspace::CloseActiveDock",
       "super-w super-x": "workspace::CloseActiveDock",
+      // Recent Projects
+      "super-w r": ["projects::OpenRecent", { "create_new_window": false }],
+      "super-w super-r": [
+        "projects::OpenRecent",
+        { "create_new_window": true },
+      ],
+      // Remote projects
+      "super-w c": [
+        "projects::OpenRemote",
+        { "from_existing_connection": false, "create_new_window": false },
+      ],
+      "super-w super-c": [
+        "projects::OpenRemote",
+        { "from_existing_connection": false, "create_new_window": true },
+      ],
     },
   },
   {

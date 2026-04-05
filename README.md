@@ -65,13 +65,13 @@ Restart Zed.
 | Prefix | Group        | Purpose                                             |
 | ------ | ------------ | --------------------------------------------------- |
 | `⌘ J`  | **J**ump     | Go to definition, references, bracket, back/forward |
-| `⌘ N`  | **N**avigate | File finder, project symbols, search, recent        |
-| `⌘ R`  | **R**efactor | Rename, format, imports, code actions, tasks        |
-| `⌘ L`  | **L**ine     | Move, duplicate, delete, join, comment              |
-| `⌘ E`  | **E**ditor   | Splits, tabs, pane focus, search bar                |
-| `⌘ W`  | **W**indow   | Panel and dock toggles, close tab/dock              |
-| `⌘ F`  | **F**old     | Fold, unfold, fold by level                         |
-| `⌘ B`  | **B**lock    | Selection expansion, multi-cursor                   |
+| `⌘ N`  | **N**avigate | File finder, project symbols, search                |
+| `⌘ R`  | **R**efactor | Rename, format, imports, code actions, completions  |
+| `⌘ L`  | **L**ine     | Duplicate, delete, join, comment, new line          |
+| `⌘ B`  | **B**lock    | Selection expansion, multi-cursor, folding          |
+| `⌘ F`  | **F**ind     | Buffer search, project search, match navigation     |
+| `⌘ E`  | **E**ditor   | Splits, pane focus, pane swap, tabs, preview        |
+| `⌘ W`  | **W**indow   | Panel and dock toggles, recent/remote projects      |
 
 ---
 
@@ -82,7 +82,7 @@ No prefix.
 | Key    | Action                            | Notes                                                        |
 | ------ | --------------------------------- | ------------------------------------------------------------ |
 | `F4`   | Spawn Task                        | Choose from a list                                           |
-| `⇧F4`  | Rerun last task                   |                                                              |
+| `⇧F4`  | Rerun Last Task                   |                                                              |
 | `F5`   | Start / Rerun / Continue          | Starts when idle, reruns when running, continues when paused |
 | `⇧F5`  | Stop                              |                                                              |
 | `F6`   | Step Over                         |                                                              |
@@ -129,7 +129,6 @@ Multi-destination navigation.
 | `⌘ N` · `F` | File Finder                    |
 | `⌘ N` · `S` | Project Symbols                |
 | `⌘ N` · `P` | Project Search (find in files) |
-| `⌘ N` · `R` | Recent Projects                |
 | `⌘ N` · `C` | Command Palette                |
 | `⌘ N` · `D` | Diagnostics Panel              |
 
@@ -166,58 +165,87 @@ Line and selection manipulation.
 | `⌘ L` · `A` | New Line Above      | Stays in current line         |
 | `⌘ L` · `B` | New Line Below      | Stays in current line         |
 
-> `⌥` is `Alt` in Windows and Linux.
+> `⌥` is `Alt` on Windows and Linux.
 
 ---
 
 ### ⌘ B — Block / Selection
 
-Syntax-aware selection and multi-cursor.
+Syntax-aware selection, multi-cursor, and folding.
 
-| Keys        | Action                                    |
-| ----------- | ----------------------------------------- |
-| `⌘ B` · `E` | Expand Selection (larger syntax node)     |
-| `⌘ B` · `S` | Shrink Selection (smaller syntax node)    |
-| `⌘ B` · `J` | Moves cursor position to Matching Bracket |
-| `⌘ B` · `N` | Select Next Occurrence (add)              |
-| `⌘ B` · `P` | Skip Occurrence, Select Next              |
-| `⌘ B` · `A` | Select All Occurrences                    |
-| `⌘ B` · `C` | Add Cursor Above                          |
-| `⌘ B` · `V` | Add Cursor Below                          |
+**Selection & Multi-cursor**
+
+| Keys        | Action                                 |
+| ----------- | -------------------------------------- |
+| `⌘ B` · `E` | Expand Selection (larger syntax node)  |
+| `⌘ B` · `S` | Shrink Selection (smaller syntax node) |
+| `⌘ B` · `J` | Move Cursor to Matching Bracket        |
+| `⌘ B` · `N` | Select Next Occurrence (add)           |
+| `⌘ B` · `P` | Skip Occurrence, Select Next           |
+| `⌘ B` · `A` | Select All Occurrences                 |
+| `⌘ B` · `C` | Add Cursor Above                       |
+| `⌘ B` · `V` | Add Cursor Below                       |
+
+**Folding**
+
+| Keys                | Action           |
+| ------------------- | ---------------- |
+| `⌘ B` · `F`         | Toggle Fold      |
+| `⌘ B` · `[`         | Fold Recursive   |
+| `⌘ B` · `]`         | Unfold Recursive |
+| `⌘ B` · `⌘ F` · `A` | Fold All         |
+| `⌘ B` · `⌘ F` · `U` | Unfold All       |
+| `⌘ B` · `⌘ F` · `1` | Fold to Level 1  |
+| `⌘ B` · `⌘ F` · `2` | Fold to Level 2  |
+| `⌘ B` · `⌘ F` · `3` | Fold to Level 3  |
+| `⌘ B` · `⌘ F` · `4` | Fold to Level 4  |
+| `⌘ B` · `⌘ F` · `5` | Fold to Level 5  |
+| `⌘ B` · `⌘ F` · `6` | Fold to Level 6  |
+| `⌘ B` · `⌘ F` · `7` | Fold to Level 7  |
+| `⌘ B` · `⌘ F` · `8` | Fold to Level 8  |
+| `⌘ B` · `⌘ F` · `9` | Fold to Level 9  |
 
 ---
 
-### ⌘ F — Fold
+### ⌘ F — Find
 
-All code folding operations.
+Buffer search, match navigation, and project search.
 
-| Keys        | Action                    |
-| ----------- | ------------------------- |
-| `⌘ F` · `F` | Toggle Fold at Cursor     |
-| `⌘ F` · `A` | Fold All                  |
-| `⌘ F` · `U` | Unfold All                |
-| `⌘ F` · `R` | Fold Recursive            |
-| `⌘ F` · `E` | Unfold / Expand at Cursor |
-| `⌘ F` · `1` | Fold to Level 1           |
-| `⌘ F` · `2` | Fold to Level 2           |
-| `⌘ F` · `3` | Fold to Level 3           |
-| `⌘ F` · `4` | Fold to Level 4           |
-| `⌘ F` · `5` | Fold to Level 5           |
+**Buffer Search**
+
+| Keys        | Action                          |
+| ----------- | ------------------------------- |
+| `⌘ F` · `F` | Open Search Bar (focused)       |
+| `⌘ F` · `R` | Open Replace Bar                |
+| `⌘ F` · `N` | Next Match                      |
+| `⌘ F` · `P` | Previous Match                  |
+| `⌘ F` · `A` | Select All Matches              |
+| `⌘ F` · `T` | Toggle Replace                  |
+| `⌘ F` · `S` | Toggle Search Within Selection  |
+| `⌘ F` · `O` | Outline Picker (symbol in file) |
+
+**Search Modifiers**
+
+| Keys        | Action                |
+| ----------- | --------------------- |
+| `⌘ F` · `C` | Toggle Case Sensitive |
+| `⌘ F` · `W` | Toggle Whole Word     |
+| `⌘ F` · `X` | Toggle Regex          |
+
+**Project Search**
+
+| Keys        | Action                         |
+| ----------- | ------------------------------ |
+| `⌘ F` · `/` | Project Search (find in files) |
+| `⌘ F` · `I` | Toggle Project Search Filters  |
 
 ---
 
 ### ⌘ E — Editor
 
-Pane splits, tab navigation, and in-buffer search.
+Pane splits, pane swapping, pane focus, tab navigation, and preview.
 
-**Search**
-
-| Keys        | Action                              |
-| ----------- | ----------------------------------- |
-| `⌘ E` · `S` | Open Search Bar (focused)           |
-| `⌘ E` · `R` | Open Search / Replace Bar (focused) |
-
-**Splits**
+**Splits** (arrow key = split in that direction)
 
 | Keys        | Action      |
 | ----------- | ----------- |
@@ -226,14 +254,23 @@ Pane splits, tab navigation, and in-buffer search.
 | `⌘ E` · `←` | Split Left  |
 | `⌘ E` · `↑` | Split Up    |
 
-**Pane Focus** (vim-style hjkl)
+**Pane Focus** (⌘ + arrow = focus in that direction)
 
-| Keys        | Action           |
-| ----------- | ---------------- |
-| `⌘ E` · `H` | Focus Pane Left  |
-| `⌘ E` · `J` | Focus Pane Below |
-| `⌘ E` · `K` | Focus Pane Above |
-| `⌘ E` · `L` | Focus Pane Right |
+| Keys          | Action           |
+| ------------- | ---------------- |
+| `⌘ E` · `⌘ →` | Focus Pane Right |
+| `⌘ E` · `⌘ ↓` | Focus Pane Below |
+| `⌘ E` · `⌘ ←` | Focus Pane Left  |
+| `⌘ E` · `⌘ ↑` | Focus Pane Above |
+
+**Pane Swap** (vim-style hjkl)
+
+| Keys        | Action          |
+| ----------- | --------------- |
+| `⌘ E` · `L` | Swap Pane Right |
+| `⌘ E` · `J` | Swap Pane Down  |
+| `⌘ E` · `H` | Swap Pane Left  |
+| `⌘ E` · `K` | Swap Pane Up    |
 
 **Tabs**
 
@@ -243,11 +280,18 @@ Pane splits, tab navigation, and in-buffer search.
 | `⌘ E` · `B` | Previous Tab    |
 | `⌘ E` · `P` | Pin / Unpin Tab |
 
+**Markdown Preview** (editor must contain a Markdown file)
+
+| Keys          | Action                        |
+| ------------- | ----------------------------- |
+| `⌘ E` · `M`   | Markdown Preview (inline)     |
+| `⌘ E` · `⌘ M` | Markdown Preview (to the side)|
+
 ---
 
 ### ⌘ W — Window
 
-Panel and dock toggles.
+Panel and dock toggles, recent and remote projects.
 
 **Panels**
 
@@ -261,14 +305,23 @@ Panel and dock toggles.
 | `⌘ W` · `A` | AI Agent Panel           |
 | `⌘ W` · `M` | Diagnostics (Messages)   |
 
-**Docks**
+**Docks** (vim-style hjkl)
 
 | Keys        | Action             |
 | ----------- | ------------------ |
-| `⌘ W` · `←` | Toggle Left Dock   |
-| `⌘ W` · `→` | Toggle Right Dock  |
-| `⌘ W` · `↓` | Toggle Bottom Dock |
+| `⌘ W` · `H` | Toggle Left Dock   |
+| `⌘ W` · `J` | Toggle Bottom Dock |
+| `⌘ W` · `L` | Toggle Right Dock  |
 | `⌘ W` · `0` | Toggle All Docks   |
+
+**Projects**
+
+| Keys          | Action                                     |
+| ------------- | ------------------------------------------ |
+| `⌘ W` · `R`   | Open Recent Project (current window)       |
+| `⌘ W` · `⌘ R` | Open Recent Project (new window)           |
+| `⌘ W` · `C`   | Connect to Remote Project (current window) |
+| `⌘ W` · `⌘ C` | Connect to Remote Project (new window)     |
 
 **Close**
 
@@ -284,7 +337,7 @@ These built-in shortcuts have been intentionally removed to prevent accidental u
 
 | Disabled Key | Was                              | Replacement |
 | ------------ | -------------------------------- | ----------- |
-| `⌘ B`        | Toggles Left Dock                | `⌘ W` · `←` |
-| `⌘ F`        | Open search bar / project search | `⌘ E` · `S` |
-| `⌘ R`        | Toggle Right Dock                | `⌘ W` · `→` |
+| `⌘ B`        | Toggles Left Dock                | `⌘ W` · `H` |
+| `⌘ F`        | Open search bar / project search | `⌘ F` · `F` |
+| `⌘ R`        | Toggle Right Dock                | `⌘ W` · `L` |
 | `⌘ W`        | Close tab / close dock           | `⌘ W` · `X` |
